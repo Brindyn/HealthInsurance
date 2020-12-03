@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Health Insurance Risk Calculator</title>
+</head>
+
+<body>
+<h1>Health Insurance Risk Calculator</h1>
+<h3>By Brindyn Schultz</h3>
+<hr>
+<h5>Please select from the following dropdown boxes to answer each question.</h5>
+
+<label for="age">What is your age?</label><br />
+<select name="age" id="age">
+  <option value="0">Less than 30 years old</option>
+  <option value="10">Between 30-45 years old</option>
+  <option value="20">Between 45-60 years old</option>
+  <option value="30">Above 60 years old</option>
+</select>
+<br />
+<br />
+
+<label for="bmi">What is your BMI?</label><br />
+<select name="bmi" id="bmi">
+  <optgroup label="normal">
+    <option value="0">18.5-24.9</option>
+  </optgroup>
+  <optgroup label="overweight">
+    <option value="30">25.0-29.9</option>
+  </optgroup>
+  <optgroup label="obesity">
+    <option value="75">30.0-34.9</option>
+  </optgroup>
+</select>
+<br />
+<br />
+
+<label for="bloodPressure">What is your blood pressure?</label><br />
+<select name="bloodPressure" id="bloodPressure">
+  <optgroup label="normal">
+    <option value="0">120 over 80</option>
+  </optgroup>
+  <optgroup label="elevated">
+    <option value="15">120-129 over 80</option>
+  </optgroup>
+  <optgroup label="stage 1">
+    <option value="30">130-139 over 80-89</option>
+  </optgroup>
+  <optgroup label="stage 2">
+    <option value="75">140 over 90</option>
+  </optgroup>
+  <optgroup label="crisis">
+    <option value="100">180 over 120 or higher</option>
+  </optgroup>
+</select>
+<br />
+<br />
+
+<label for="diabetes">Do you have family history of diabetes?</label><br />
+<select name="diabetes" id="diabetes">
+  <option value="10">yes</option>
+  <option value="0">no</option>
+</select>
+<br />
+<br />
+
+<label for="cancer">Do you have family history of cancer?</label><br />
+<select name="cancer" id="cancer">
+  <option value="10">yes</option>
+  <option value="0">no</option>
+</select>
+<br />
+<br />
+
+<label for="alzheimers">Do you have family history of Alzheimer's?</label><br />
+<select name="alzheimers" id="alzheimers">
+  <option value="10">yes</option>
+  <option value="0">no</option>
+</select>
+<br />
+<br />
+<br />
+<button onclick="calculateHealthRisk()">Calculate Health Risk</button>
+<p id="healthScore"></p>
+<p id="healthRisk"></p>
+
+<script>
+function calculateHealthRisk(){
+    let age = parseInt(document.getElementById('age').selectedOptions[0].value);
+    let bmi = parseInt(document.getElementById('bmi').selectedOptions[0].value);
+    let bloodPressure = parseInt(document.getElementById('bloodPressure').selectedOptions[0].value);
+    let diabetes = parseInt(document.getElementById('diabetes').selectedOptions[0].value);
+    let cancer = parseInt(document.getElementById('cancer').selectedOptions[0].value);
+    let alzheimers = parseInt(document.getElementById('alzheimers').selectedOptions[0].value);
+    let healthScore = (age + bmi + bloodPressure + diabetes + cancer + alzheimers)
+    document.getElementById("healthScore").innerHTML = "Heath Score: " + healthScore;
+    if(healthScore <= 20)
+    {
+        document.getElementById("healthRisk").innerHTML = "You are at low risk.";
+    }
+    else if(healthScore <= 50)
+    {
+        document.getElementById("healthRisk").innerHTML = "You are at moderate risk.";
+    }
+    else if(healthScore <= 75)
+    {
+        document.getElementById("healthRisk").innerHTML = "You are at high risk.";
+    }
+    else
+    {
+        document.getElementById("healthRisk").innerHTML = "You are uninsurable.";
+    }
+}
+
+</script>
+</body>
+</html>
